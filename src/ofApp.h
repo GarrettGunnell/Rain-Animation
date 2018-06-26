@@ -1,10 +1,17 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Rain.h"
 
 class ofApp : public ofBaseApp{
 
 	public:
+		ofImage background;
+		ofImage bench;
+		vector<Rain*> thinRainDrops;
+		vector<Rain*> thickRainDrops;
+		const int NUM_RAIN_DROPS = 1000;
+
 		void setup();
 		void update();
 		void draw();
