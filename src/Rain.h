@@ -7,6 +7,7 @@ public:
 	void move();
 	void draw();
 	void edgeCollisions();
+	void splash();
 	void reset();
 
 private:
@@ -15,6 +16,8 @@ private:
 	float width;
 	float length;
 	float speed;
+	float splashTime;
 	ofColor color;
+	bool splashing;
 	bool thin;
 };

@@ -8,6 +8,7 @@ class ofApp : public ofBaseApp{
 	public:
 		ofImage background;
 		ofImage bench;
+		Rain* rainDrop;
 		vector<Rain*> thinRainDrops;
 		vector<Rain*> thickRainDrops;
 		const int NUM_RAIN_DROPS = 1000;

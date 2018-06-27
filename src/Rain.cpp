@@ -8,6 +8,7 @@ Rain::Rain(float x, float y, float width, float length, float speed, ofColor col
 	this->speed = speed;
 	this->color = color;
 	this->thin = thin;
+	this->splashTime = 0;
 }
 
 void Rain::move() {
@@ -25,17 +26,26 @@ void Rain::draw() {
 }
 
 void Rain::edgeCollisions() {
-	if (this->thin) {
-		if (this->y + this->length > 743) {
+	if (!this->splashing) {
+		if (this->thin) {
+			if (this->y + this->length > 743) {
+				this->splashTime = ofGetElapsedTimeMillis();
+				this->splash();
+			}
+		}
+		else if (this->y + this->length > 775) {
+			this->splashTime = ofGetElapsedTimeMillis();
+			this->splash();
+		}
+		else if (this->x < 0) {
 			this->reset();
 		}
 	}
-	else if (this->y + this->length > 775) {
-		this->reset();
-	}
-	else if (this->x < 0) {
-		this->reset();
-	}
+}
+
+void Rain::splash() {
+	this->speed = 0;
+	this->splashing = true;
 }
 
 void Rain::reset() {
