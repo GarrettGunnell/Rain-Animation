@@ -12,20 +12,25 @@ Rain::Rain(float x, float y, float width, float length, float speed, ofColor col
 
 void Rain::move() {
 	this->y += this->speed;
-	this->x -= this->speed / 2;
+	this->x -= this->speed / 3;
 }
 
 void Rain::draw() {
 	ofSetColor(this->color);
 	ofPushMatrix();
 	ofTranslate(this->x, this->y);
-	ofRotate(30);
+	ofRotate(15);
 	ofDrawRectangle(0, 0, this->width, this->length);
 	ofPopMatrix();
 }
 
 void Rain::edgeCollisions() {
-	if (this->y + this->length > ofGetHeight()) {
+	if (this->thin) {
+		if (this->y + this->length > 743) {
+			this->reset();
+		}
+	}
+	else if (this->y + this->length > 775) {
 		this->reset();
 	}
 	else if (this->x < 0) {
@@ -35,20 +40,22 @@ void Rain::edgeCollisions() {
 
 void Rain::reset() {
 	int random = ofRandom(1000);
-	if (random < 500) {
+	if (random < 700) {
 		if (this->thin) {
 			this->x = ofRandom(ofGetWidth());
 			this->width = ofRandom(0.2, 0.5);
 			this->length = ofRandom(20, 30);
 			this->y = 0 - this->length;
 			this->speed = ofRandom(14, 15);
+			//20,21
 		}
 		else {
 			this->x = ofRandom(ofGetWidth());
-			this->width = ofRandom(0.5, 1);
-			this->length = ofRandom(20, 30);
+			this->width = ofRandom(1, 1.5);
+			this->length = ofRandom(20, 25);
 			this->y = 0 - this->length;
 			this->speed = ofRandom(12, 14);
+			//18,19
 		}
 	}
 	else {
@@ -56,15 +63,15 @@ void Rain::reset() {
 			this->x = ofGetWidth();
 			this->width = ofRandom(0.2, 0.5);
 			this->length = ofRandom(20, 30);
-			this->y = ofRandom(ofGetHeight());
-			this->speed = ofRandom(20, 21);
+			this->y = ofRandom(0, 743);
+			this->speed = ofRandom(14, 15);
 		}
 		else {
 			this->x = ofGetWidth();
-			this->width = ofRandom(0.5, 1);
-			this->length = ofRandom(20, 30);
-			this->y = ofRandom(ofGetHeight());
-			this->speed = ofRandom(18, 19);
+			this->width = ofRandom(1, 1.5);
+			this->length = ofRandom(20, 25);
+			this->y = ofRandom(0, 770);
+			this->speed = ofRandom(12, 14);
 		}
 	}
 }
