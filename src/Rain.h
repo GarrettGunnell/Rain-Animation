@@ -15,6 +15,7 @@ private:
 	float y;
 	float width;
 	float length;
+	float splashLength;
 	float speed;
 	float splashTime;
 	ofColor color;
