@@ -154,7 +154,7 @@ void Rain::reset() {
 			this->speed = ofRandom(18, 19);
 			//18,19
 			//12,14
-			if (otherRandom < 700) {
+			if (otherRandom < 500) {
 				this->middle = true;
 			}
 			else {
@@ -176,7 +176,7 @@ void Rain::reset() {
 			this->length = ofRandom(20, 25);
 			this->y = ofRandom(0, 770);
 			this->speed = ofRandom(18, 19);
-			if (otherRandom < 700) {
+			if (otherRandom < 500) {
 				this->middle = true;
 			}
 			else {

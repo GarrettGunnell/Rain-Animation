@@ -22,7 +22,7 @@ class ofApp : public ofBaseApp{
 		vector<Rain*> thinRainDrops;
 		vector<Rain*> thickRainDrops;
 		const int NUM_THIN_DROPS = 500;
-		const int NUM_THICK_DROPS = 300;
+		const int NUM_THICK_DROPS = 400;
 
 		void setup();
 		void update();
