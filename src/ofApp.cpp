@@ -14,6 +14,8 @@ void ofApp::setup() {
 	umbrella7 = new ofRectangle(409, 295, 160, 78);
 	umbrella8 = new ofRectangle(426, 290, 122, 78);
 	umbrella9 = new ofRectangle(441, 285, 90, 78);
+	benchHitbox = new ofRectangle(185, 460, 181, 30);
+	benchHitbox2 = new ofRectangle(635, 460, 176, 30);
 	for (int i = 0; i < NUM_THIN_DROPS; ++i) {
 		thinRainDrops.push_back(new Rain(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()), ofRandom(0.2, 0.5), ofRandom(20, 30), ofRandom(20, 21), ofColor(100), true));
 	}
@@ -25,11 +27,11 @@ void ofApp::setup() {
 void ofApp::update() {
 	for (int i = 0; i < thinRainDrops.size(); ++i) {
 		thinRainDrops[i]->move();
-		thinRainDrops[i]->edgeCollisions(umbrella1, umbrella2, umbrella3, umbrella4, umbrella5, umbrella6, umbrella7, umbrella8, umbrella9);
+		thinRainDrops[i]->edgeCollisions(umbrella1, umbrella2, umbrella3, umbrella4, umbrella5, umbrella6, umbrella7, umbrella8, umbrella9, benchHitbox, benchHitbox2);
 	}
 	for (int i = 0; i < thickRainDrops.size(); ++i) {
 		thickRainDrops[i]->move();
-		thickRainDrops[i]->edgeCollisions(umbrella1, umbrella2, umbrella3, umbrella4, umbrella5, umbrella6, umbrella7, umbrella8, umbrella9);
+		thickRainDrops[i]->edgeCollisions(umbrella1, umbrella2, umbrella3, umbrella4, umbrella5, umbrella6, umbrella7, umbrella8, umbrella9, benchHitbox, benchHitbox2);
 	}
 }
 
@@ -44,8 +46,8 @@ void ofApp::draw() {
 	for (int i = 0; i < thickRainDrops.size(); ++i) {
 		thickRainDrops[i]->draw();
 	}
-	ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), 100, 100);
-	//ofDrawRectangle(346, 340, 287, 78); //umbrella 1
+	//ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), 100, 100);
+	//ofDrawRectangle(346, 340, 287, 100); //umbrella 1
 	//ofDrawRectangle(363, 320, 246, 78); //umbrella 2
 	//ofDrawRectangle(354, 330, 266, 78); //umbrella 3
 	//ofDrawRectangle(376, 311, 220, 78); //umbrella 4
@@ -54,7 +56,8 @@ void ofApp::draw() {
 	//ofDrawRectangle(409, 295, 160, 78); //umbrella 7
 	//ofDrawRectangle(426, 290, 122, 78); //umbrella 8
 	//ofDrawRectangle(441, 285, 90, 78); //umbrella 9
-	ofDrawRectangle(180, 460, 641, 30);
+	//ofDrawRectangle(185, 460, 181, 30); //bench
+	//ofDrawRectangle(635, 460, 176, 30); //bench 2
 }
 
 void ofApp::keyPressed(int key) {

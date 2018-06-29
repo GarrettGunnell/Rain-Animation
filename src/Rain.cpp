@@ -11,6 +11,7 @@ Rain::Rain(float x, float y, float width, float length, float speed, ofColor col
 	this->splashing = false;
 	this->splashTime = 0;
 	this->splashLength = 0;
+	this->splashColor = ofColor(200);
 	if (thin == false) {
 		int random = ofRandom(1000);
 		if (random < 500) {
@@ -33,7 +34,7 @@ void Rain::move() {
 void Rain::draw() {
 	if (this->splashing) {
 		this->splashLength += ofRandom(0.4, 0.8);
-		ofSetColor(200);
+		ofSetColor(this->splashColor);
 		ofPushMatrix();
 		ofTranslate(this->x, this->y);
 		ofRotate(210);
@@ -55,7 +56,7 @@ void Rain::draw() {
 	}
 }
 
-void Rain::edgeCollisions(ofRectangle* umbrella1, ofRectangle* umbrella2, ofRectangle* umbrella3, ofRectangle* umbrella4, ofRectangle* umbrella5, ofRectangle* umbrella6, ofRectangle* umbrella7, ofRectangle* umbrella8, ofRectangle* umbrella9) {
+void Rain::edgeCollisions(ofRectangle* umbrella1, ofRectangle* umbrella2, ofRectangle* umbrella3, ofRectangle* umbrella4, ofRectangle* umbrella5, ofRectangle* umbrella6, ofRectangle* umbrella7, ofRectangle* umbrella8, ofRectangle* umbrella9, ofRectangle* benchHitbox, ofRectangle* benchHitbox2) {
 	if (!this->splashing) {
 		if (this->thin) {
 			if (this->y + this->length > 750) {
@@ -66,6 +67,18 @@ void Rain::edgeCollisions(ofRectangle* umbrella1, ofRectangle* umbrella2, ofRect
 		else if (this->middle) {
 			if (umbrella9->inside(this->x, this->y)) {
 				this->splashTime = ofGetElapsedTimeMillis();
+				this->splash();
+			}
+			else if (benchHitbox->inside(this->x, this->y)) {
+				this->splashTime = ofGetElapsedTimeMillis();
+				this->y = benchHitbox->getY() - ofRandom(3, 5);
+				this->splashColor = ofColor(160);
+				this->splash();
+			}
+			else if (benchHitbox2->inside(this->x, this->y)) {
+				this->splashTime = ofGetElapsedTimeMillis();
+				this->y = benchHitbox->getY() - ofRandom(3, 5);
+				this->splashColor = ofColor(160);
 				this->splash();
 			}
 			else if (umbrella8->inside(this->x, this->y)) {
@@ -173,4 +186,5 @@ void Rain::reset() {
 	}
 	this->splashing = false;
 	this->splashLength = 0;
+	this->splashColor = ofColor(200);
 }

@@ -17,6 +17,8 @@ class ofApp : public ofBaseApp{
 		ofRectangle* umbrella7;
 		ofRectangle* umbrella8;
 		ofRectangle* umbrella9;
+		ofRectangle* benchHitbox;
+		ofRectangle* benchHitbox2;
 		vector<Rain*> thinRainDrops;
 		vector<Rain*> thickRainDrops;
 		const int NUM_THIN_DROPS = 500;
