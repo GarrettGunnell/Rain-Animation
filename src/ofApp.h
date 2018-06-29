@@ -8,10 +8,17 @@ class ofApp : public ofBaseApp{
 	public:
 		ofImage background;
 		ofImage bench;
-		Rain* rainDrop;
+		ofRectangle* umbrella1;
+		ofRectangle* umbrella2;
+		ofRectangle* umbrella3;
+		ofRectangle* umbrella4;
+		ofRectangle* umbrella5;
+		ofRectangle* umbrella6;
+		ofRectangle* umbrella7;
+		ofRectangle* umbrella8;
+		ofRectangle* umbrella9;
 		vector<Rain*> thinRainDrops;
 		vector<Rain*> thickRainDrops;
-		const int NUM_RAIN_DROPS = 1000;
 		const int NUM_THIN_DROPS = 500;
 		const int NUM_THICK_DROPS = 300;
 

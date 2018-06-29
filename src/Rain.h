@@ -6,7 +6,7 @@ public:
 	Rain(float x, float y, float width, float length, float speed, ofColor color, bool thin);
 	void move();
 	void draw();
-	void edgeCollisions();
+	void edgeCollisions(ofRectangle* umbrella1, ofRectangle* umbrella2, ofRectangle* umbrella3, ofRectangle* umbrella4, ofRectangle* umbrella5, ofRectangle* umbrella6, ofRectangle* umbrella7, ofRectangle* umbrella8, ofRectangle* umbrella9);
 	void splash();
 	void reset();
 
@@ -21,4 +21,5 @@ private:
 	ofColor color;
 	bool splashing;
 	bool thin;
+	bool middle;
 };

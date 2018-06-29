@@ -5,6 +5,15 @@ void ofApp::setup() {
 	ofSetFrameRate(60);
 	background.load("Background.png");
 	bench.load("Bench and Person.png");
+	umbrella1 = new ofRectangle(346, 340, 287, 78); //This initializes the umbrella hitbox, yeah I know it's ugly please don't point it out please thanks
+	umbrella2 = new ofRectangle(363, 320, 246, 78);
+	umbrella3 = new ofRectangle(354, 330, 266, 78);
+	umbrella4 = new ofRectangle(376, 311, 220, 78);
+	umbrella5 = new ofRectangle(387, 305, 200, 78);
+	umbrella6 = new ofRectangle(396, 300, 180, 78);
+	umbrella7 = new ofRectangle(409, 295, 160, 78);
+	umbrella8 = new ofRectangle(426, 290, 122, 78);
+	umbrella9 = new ofRectangle(441, 285, 90, 78);
 	for (int i = 0; i < NUM_THIN_DROPS; ++i) {
 		thinRainDrops.push_back(new Rain(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()), ofRandom(0.2, 0.5), ofRandom(20, 30), ofRandom(20, 21), ofColor(100), true));
 	}
@@ -16,11 +25,11 @@ void ofApp::setup() {
 void ofApp::update() {
 	for (int i = 0; i < thinRainDrops.size(); ++i) {
 		thinRainDrops[i]->move();
-		thinRainDrops[i]->edgeCollisions();
+		thinRainDrops[i]->edgeCollisions(umbrella1, umbrella2, umbrella3, umbrella4, umbrella5, umbrella6, umbrella7, umbrella8, umbrella9);
 	}
 	for (int i = 0; i < thickRainDrops.size(); ++i) {
 		thickRainDrops[i]->move();
-		thickRainDrops[i]->edgeCollisions();
+		thickRainDrops[i]->edgeCollisions(umbrella1, umbrella2, umbrella3, umbrella4, umbrella5, umbrella6, umbrella7, umbrella8, umbrella9);
 	}
 }
 
@@ -35,8 +44,17 @@ void ofApp::draw() {
 	for (int i = 0; i < thickRainDrops.size(); ++i) {
 		thickRainDrops[i]->draw();
 	}
-	//ofSetColor(0, 0, 0);
-	//ofDrawLine(0, 775, ofGetWidth(), 775);
+	ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), 100, 100);
+	//ofDrawRectangle(346, 340, 287, 78); //umbrella 1
+	//ofDrawRectangle(363, 320, 246, 78); //umbrella 2
+	//ofDrawRectangle(354, 330, 266, 78); //umbrella 3
+	//ofDrawRectangle(376, 311, 220, 78); //umbrella 4
+	//ofDrawRectangle(387, 305, 200, 78); //umbrella 5
+	//ofDrawRectangle(396, 300, 180, 78); //umbrella 6
+	//ofDrawRectangle(409, 295, 160, 78); //umbrella 7
+	//ofDrawRectangle(426, 290, 122, 78); //umbrella 8
+	//ofDrawRectangle(441, 285, 90, 78); //umbrella 9
+	ofDrawRectangle(180, 460, 641, 30);
 }
 
 void ofApp::keyPressed(int key) {
